@@ -1,0 +1,18 @@
+pollutantmean <- function(pathtodirectory, pollutant, id=1:332){
+    files <- sprintf('%s/%03d.csv', pathtodirectory,id)
+    lst <- vector('list', length(id))
+    m1 <- vector('numeric', length(id))
+     for(i in seq_along(lst)){
+      lst[[i]] <- read.csv(files[i])
+       if(pollutant=='sulfate'){
+         m1[i] <- mean(lst[[i]]$sulfate, na.rm=TRUE)
+       }
+
+       if(pollutant=='nitrate'){
+          m1[i] <- mean(lst[[i]]$nitrate, na.rm=TRUE)
+         }
+       }
+    return(list(m1, mean(m1)))          
+ } 
+
+
